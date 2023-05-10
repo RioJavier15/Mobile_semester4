@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RegisUser">
+
+    <RelativeLayout
+        android:layout_width="150dp"
+        android:layout_height="110dp"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/pojokkanan"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="70dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:textColor="@color/fans"
+            android:layout_marginBottom="20dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="35dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:textColor="@color/fans"
+                android:textStyle="bold"
+                android:layout_marginStart="5dp"/>
+            <EditText
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:id="@+id/txtUsernameRegis"
+                android:background="@drawable/custom_edittext"
+                android:drawableLeft="@drawable/baseline_person_24"
+                android:padding="8dp"
+                android:drawablePadding="8dp"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:hint="Masukkan Username"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alamat"
+                android:textColor="@color/fans"
+                android:textStyle="bold"
+                android:layout_marginStart="5dp"/>
+            <EditText
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:id="@+id/txtAlamat"
+                android:background="@drawable/custom_edittext"
+                android:drawableLeft="@drawable/baseline_home_24"
+                android:padding="8dp"
+                android:drawablePadding="8dp"
+                android:hint="Masukkan Alamat"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No.Handphone"
+                android:textColor="@color/fans"
+                android:textStyle="bold"
+                android:layout_marginStart="5dp"/>
+            <EditText
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:id="@+id/txtNohp"
+                android:background="@drawable/custom_edittext"
+                android:drawableLeft="@drawable/baseline_phone_android_24"
+                android:padding="8dp"
+                android:drawablePadding="8dp"
+                android:hint="Masukkan Nomor Handphone"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="E-mail"
+                android:textColor="@color/fans"
+                android:textStyle="bold"
+                android:layout_marginStart="5dp"/>
+            <EditText
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:id="@+id/txtEmailRegis"
+                android:background="@drawable/custom_edittext"
+                android:drawableLeft="@drawable/baseline_email_24"
+                android:padding="8dp"
+                android:drawablePadding="8dp"
+                android:hint="Masukkan E-mail"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textColor="@color/fans"
+                android:textStyle="bold"
+                android:layout_marginStart="5dp"/>
+            <EditText
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:id="@+id/txtPassRegis"
+                android:background="@drawable/custom_edittext"
+                android:drawableLeft="@drawable/baseline_password_24"
+                android:padding="8dp"
+                android:drawablePadding="8dp"
+                android:hint="Masukkan Password"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Konfirmasi Password"
+                android:textColor="@color/fans"
+                android:textStyle="bold"
+                android:layout_marginStart="5dp"/>
+            <EditText
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:id="@+id/txtPassConfirm"
+                android:background="@drawable/custom_edittext"
+                android:drawableLeft="@drawable/baseline_lock_24"
+                android:padding="8dp"
+                android:drawablePadding="8dp"
+                android:hint="Masukkan Password"
+                android:textColor="@color/black"/>
+            <Button
+                android:id="@+id/btnSignUp"
+                android:layout_marginTop="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign Up"
+                android:textColor="@color/white"
+                android:textSize="15sp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sudah punya akun?"/>
+                <TextView
+                    android:id="@+id/txtLogindisini"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Login di sini"
+                    android:textColor="@color/fans"
+                    android:clickable="true"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="110dp"-->
+<!--        android:layout_height="110dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:background="@drawable/pojokkanan2"/>-->
+
+</RelativeLayout>
