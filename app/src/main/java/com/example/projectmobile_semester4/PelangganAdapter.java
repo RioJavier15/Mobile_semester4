@@ -23,14 +23,15 @@ public class PelangganAdapter extends ArrayAdapter<Pelanggan> {
         }
 
         TextView tvNama = (TextView) convertView.findViewById(R.id.listName);
-        TextView tvEmail = (TextView) convertView.findViewById(R.id.alamat);
-        TextView tvAlamat = (TextView) convertView.findViewById(R.id.listTime);
+        TextView tvAlamat = (TextView) convertView.findViewById(R.id.alamat);
+        TextView tvStatus = (TextView) convertView.findViewById(R.id.listTime);
 
-        tvNama.setText(pelanggan.getNama_pelanggan());
-        tvEmail.setText(pelanggan.getEmail_pelanggan());
-        tvAlamat.setText(pelanggan.getStatus());
+        tvNama.setText(pelanggan.getName());
+        tvAlamat.setText(pelanggan.getAddress());
+        tvStatus.setText(pelanggan.getStatus());
 
         return convertView;
     }
+
 }
 

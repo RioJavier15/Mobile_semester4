@@ -3,79 +3,91 @@ package com.example.projectmobile_semester4;
 import java.io.Serializable;
 
 public class Pelanggan implements Serializable {
-    private String kode_pelanggan;
-    private String nama_pelanggan;
-    private String email_pelanggan;
+    private int id;
+    private String name;
+    private String username;
+    private String email;
     private String password;
-    private String nomer_hp;
+    private String phoneNumber;
     private String status;
-    private String tanggal_berlangganan;
-    private String kode_produk;
-    private String nama_produk;
-    private String kecepatan;
-    private String harga_produk;
-    private String bandwith;
+    private String address;
+    private String subscribeDate;
+    private int productId;
+    private String productName;
+    private String speed;
+    private String price;
+    private String bandwidth;
 
-    public Pelanggan(String kode_pelanggan, String nama_pelanggan, String email_pelanggan, String password, String nomer_hp, String status, String tanggal_berlangganan, String kode_produk, String nama_produk, String kecepatan, String harga_produk, String bandwith) {
-        this.kode_pelanggan = kode_pelanggan;
-        this.nama_pelanggan = nama_pelanggan;
-        this.email_pelanggan = email_pelanggan;
+    public Pelanggan(int id, String name, String username, String email, String password, String phoneNumber, String status, String address, String subscribeDate, int productId, String productName, String speed, String price, String bandwidth) {
+        this.id = id;
+        this.name = name;
+        this.username = username;
+        this.email = email;
         this.password = password;
-        this.nomer_hp = nomer_hp;
+        this.phoneNumber = phoneNumber;
         this.status = status;
-        this.tanggal_berlangganan = tanggal_berlangganan;
-        this.kode_produk = kode_produk;
-        this.nama_produk = nama_produk;
-        this.kecepatan = kecepatan;
-        this.harga_produk = harga_produk;
-        this.bandwith = bandwith;
+        this.address = address;
+        this.subscribeDate = subscribeDate;
+        this.productId = productId;
+        this.productName = productName;
+        this.speed = speed;
+        this.price = price;
+        this.bandwidth = bandwidth;
     }
 
-    public String getKode_pelanggan() {
-        return kode_pelanggan;
+    public int getId() {
+        return id;
     }
 
-    public String getNama_pelanggan() {
-        return nama_pelanggan;
+    public String getName() {
+        return name;
     }
 
-    public String getEmail_pelanggan() {
-        return email_pelanggan;
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public String getNomer_hp() {
-        return nomer_hp;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public String getTanggal_berlangganan() {
-        return tanggal_berlangganan;
+    public String getAddress() {
+        return address;
     }
 
-    public String getKode_produk() {
-        return kode_produk;
+    public String getSubscribeDate() {
+        return subscribeDate;
     }
 
-    public String getNama_produk() {
-        return nama_produk;
+    public int getProductId() {
+        return productId;
     }
 
-    public String getKecepatan() {
-        return kecepatan;
+    public String getProductName() {
+        return productName;
     }
 
-    public String getHarga_produk() {
-        return harga_produk;
+    public String getSpeed() {
+        return speed;
     }
 
-    public String getBandwith() {
-        return bandwith;
+    public String getPrice() {
+        return price;
+    }
+
+    public String getBandwidth() {
+        return bandwidth;
     }
 }
