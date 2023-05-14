@@ -89,5 +89,13 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:textAppearanceMedium"
         tools:text="Bandwidth" />
+    <Button
+        android:id="@+id/btnTransaksi"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bayar"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
 
 </LinearLayout>

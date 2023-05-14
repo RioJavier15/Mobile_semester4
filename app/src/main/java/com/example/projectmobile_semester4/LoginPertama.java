@@ -31,10 +31,10 @@ public class LoginPertama extends AppCompatActivity implements View.OnClickListe
                 Intent user = new Intent(this, LoginPelanggan.class);
                 startActivity(user);
                 break;
-//            case R.id.btnLoginTeknisi:
-//                Intent teknisi = new Intent(this,LoginPelanggan.class);
-//                startActivity(teknisi);
-//                break;
+            case R.id.btnLoginTeknisi:
+                Intent teknisi = new Intent(this,LoginTeknisi.class);
+                startActivity(teknisi);
+                break;
         }
     }
 }

@@ -22,6 +22,9 @@
             android:name=".LoginPelanggan"
             android:exported="false" />
         <activity
+            android:name=".LoginTeknisi"
+            android:exported="false" />
+        <activity
             android:name=".LoginPertama"
             android:exported="false"
             android:screenOrientation="locked" />
