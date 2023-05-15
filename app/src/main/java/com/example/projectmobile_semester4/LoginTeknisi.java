@@ -32,7 +32,7 @@ public class LoginTeknisi extends AppCompatActivity {
     EditText ed_email,ed_password;
 
     String str_email,str_password;
-    String url = "https://6067-2001-448a-5122-3243-25e6-6b96-9b47-4dc.ngrok-free.app/api/login";
+    String url = apiConfig.LOGIN_ENDPOINT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

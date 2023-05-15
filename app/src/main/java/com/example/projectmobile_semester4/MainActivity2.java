@@ -29,7 +29,7 @@ import java.util.TimerTask;
 
 public class MainActivity2 extends AppCompatActivity {
     ActivityMain2Binding binding;
-    private static final String ENDPOINT_URL = "https://6067-2001-448a-5122-3243-25e6-6b96-9b47-4dc.ngrok-free.app/api/customers-with-product";
+    private static final String ENDPOINT_URL = apiConfig.CUSTOMERS_ENDPOINT;
 
     private ListView listView;
     private ArrayList<Pelanggan> pelangganArrayList;
