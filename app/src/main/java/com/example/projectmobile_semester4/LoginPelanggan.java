@@ -30,10 +30,10 @@ public class LoginPelanggan extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         int id = view.getId();
         switch (id){
-//            case R.id.btnSignIn:
-//                Intent user = new Intent(this, .class);
-//                startActivity(user);
-//                break;
+            case R.id.btnSignIn:
+                Intent user = new Intent(this, BottomNav.class);
+                startActivity(user);
+                break;
             case R.id.txtDaftar:
                 Intent daftar = new Intent(this,RegisUser.class);
                 startActivity(daftar);
