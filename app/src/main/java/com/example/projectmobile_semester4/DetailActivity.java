@@ -87,7 +87,7 @@ public class DetailActivity extends AppCompatActivity {
         progressDialog.setMessage("Loading...");
 
             progressDialog.show();
-            StringRequest request = new StringRequest(Request.Method.POST, "https://6067-2001-448a-5122-3243-25e6-6b96-9b47-4dc.ngrok-free.app/api/transaction",
+            StringRequest request = new StringRequest(Request.Method.POST, apiConfig.TRANSACTION,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -143,7 +143,7 @@ public class DetailActivity extends AppCompatActivity {
         progressDialog.setMessage("Updating....");
         progressDialog.show();
 
-        StringRequest request = new StringRequest(Request.Method.POST, "https://6067-2001-448a-5122-3243-25e6-6b96-9b47-4dc.ngrok-free.app/api/transactionUp",
+        StringRequest request = new StringRequest(Request.Method.POST, apiConfig.TRANSACTIONUPDATE,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
