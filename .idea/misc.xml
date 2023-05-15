@@ -3,6 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Kuliah Semester 4/Project semester 4/Mobile_semester4/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.106" />
+        <entry key="..\:/Kuliah Semester 4/Project semester 4/Mobile_semester4/app/src/main/res/drawable/baseline_email_24.xml" value="0.106" />
+        <entry key="..\:/Kuliah Semester 4/Project semester 4/Mobile_semester4/app/src/main/res/drawable/baseline_phone_android_24.xml" value="0.106" />
+        <entry key="..\:/Kuliah Semester 4/Project semester 4/Mobile_semester4/app/src/main/res/drawable/bgcolor.xml" value="0.106" />
+        <entry key="..\:/Kuliah Semester 4/Project semester 4/Mobile_semester4/app/src/main/res/drawable/custom_edittext.xml" value="0.106" />
+        <entry key="..\:/Kuliah Semester 4/Project semester 4/Mobile_semester4/app/src/main/res/drawable/ic_launcher_background.xml" value="0.106" />
+        <entry key="..\:/Kuliah Semester 4/Project semester 4/Mobile_semester4/app/src/main/res/layout/activity_detail.xml" value="0.17074275362318841" />
+        <entry key="..\:/Kuliah Semester 4/Project semester 4/Mobile_semester4/app/src/main/res/layout/activity_detailed.xml" value="0.17074275362318841" />
+        <entry key="..\:/Kuliah Semester 4/Project semester 4/Mobile_semester4/app/src/main/res/layout/activity_login_pelanggan.xml" value="0.17074275362318841" />
+        <entry key="..\:/Kuliah Semester 4/Project semester 4/Mobile_semester4/app/src/main/res/layout/activity_login_pertama.xml" value="0.17074275362318841" />
+        <entry key="..\:/Kuliah Semester 4/Project semester 4/Mobile_semester4/app/src/main/res/layout/activity_main.xml" value="0.10916919959473151" />
         <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/layout/activity_detail.xml" value="0.22447916666666667" />
         <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/layout/activity_detailed.xml" value="0.1" />
         <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/layout/activity_main.xml" value="0.22447916666666667" />
