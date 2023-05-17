@@ -75,6 +75,7 @@
                 android:background="@drawable/custom_edittext"
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:padding="8dp"
+                android:inputType="textPassword"
                 android:drawablePadding="8dp"
                 android:hint="Masukkan Password"
                 android:textColor="@color/black"/>
