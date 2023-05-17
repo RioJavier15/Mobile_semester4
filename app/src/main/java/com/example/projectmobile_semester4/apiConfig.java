@@ -7,5 +7,6 @@ public class apiConfig {
     public static final String TRANSACTION = BASE_URL + "transaction";
     public static final String TRANSACTIONUPDATE = BASE_URL + "transactionUp";
     public static final String REGISTER = BASE_URL + "register";
+    public static final String BERANDA = BASE_URL + "products";
 
 }

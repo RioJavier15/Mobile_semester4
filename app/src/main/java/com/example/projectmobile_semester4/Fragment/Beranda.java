@@ -19,6 +19,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.projectmobile_semester4.Adapter.JenisPaketAdapter;
 import com.example.projectmobile_semester4.Model.JenisPaket;
 import com.example.projectmobile_semester4.R;
+import com.example.projectmobile_semester4.apiConfig;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,7 +33,7 @@ public class Beranda extends Fragment {
     private JenisPaketAdapter adapter;
     private List<JenisPaket> jenisPaketList;
     private RequestQueue requestQueue;
-    private String url = "https://f60c-103-109-209-254.ngrok-free.app/api/products";
+    private String url = apiConfig.BERANDA;
 
     public Beranda() {
         // Required empty public constructor
