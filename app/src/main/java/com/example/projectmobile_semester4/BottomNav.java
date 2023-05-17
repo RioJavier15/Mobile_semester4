@@ -7,6 +7,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.example.projectmobile_semester4.Fragment.Beranda;
+import com.example.projectmobile_semester4.Fragment.Profil;
+import com.example.projectmobile_semester4.Fragment.Riwayat;
 import com.example.projectmobile_semester4.databinding.ActivityBottomNavBinding;
 
 public class BottomNav extends AppCompatActivity {

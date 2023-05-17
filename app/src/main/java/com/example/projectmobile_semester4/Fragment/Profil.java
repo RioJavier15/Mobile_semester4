@@ -1,4 +1,4 @@
-package com.example.projectmobile_semester4;
+package com.example.projectmobile_semester4.Fragment;
 
 import android.os.Bundle;
 
@@ -8,13 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Riwayat extends Fragment {
+import com.example.projectmobile_semester4.R;
+
+public class Profil extends Fragment {
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_riwayat, container, false);
+        return inflater.inflate(R.layout.fragment_profil, container, false);
     }
 }

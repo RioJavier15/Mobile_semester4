@@ -1,4 +1,4 @@
-package com.example.projectmobile_semester4;
+package com.example.projectmobile_semester4.Model;
 
 import java.io.Serializable;
 
