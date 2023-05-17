@@ -155,7 +155,8 @@
                 android:layout_height="wrap_content"
                 android:text="Sign Up"
                 android:textColor="@color/white"
-                android:textSize="15sp"/>
+                android:textSize="15sp"
+                android:onClick="Register"/>
 
             <LinearLayout
                 android:orientation="horizontal"
