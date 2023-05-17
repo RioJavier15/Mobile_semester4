@@ -3,8 +3,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -17,6 +15,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.projectmobile_semester4.Adapter.PelangganAdapter;
+import com.example.projectmobile_semester4.Model.Pelanggan;
 import com.example.projectmobile_semester4.databinding.ActivityMain2Binding;
 
 import org.json.JSONArray;
