@@ -51,19 +51,15 @@ public class RegisUser extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please Wait..");
 
-        str_name = ed_username.getText().toString().trim();
-        str_email = ed_email.getText().toString().trim();
-        str_password = ed_password.getText().toString().trim();
-        str_phone_number = ed_phone_number.getText().toString().trim();
-        str_address = ed_address.getText().toString().trim();
+
 
         if(ed_username.getText().toString().equals("")){
             Toast.makeText(this, "Enter Username", Toast.LENGTH_SHORT).show();
         }
-        else if(str_name.length() < 8) {
+        else if(ed_username.getText().toString().trim().length() < 8) {
             Toast.makeText(this, "Username should be at least 8 characters long", Toast.LENGTH_SHORT).show();
         }
-        else if(str_password.length() < 8) {
+        else if(ed_password.getText().toString().trim().length() < 8) {
             Toast.makeText(this, "Password should be at least 8 characters long", Toast.LENGTH_SHORT).show();
         }
         else if(ed_email.getText().toString().equals("")){

@@ -43,6 +43,21 @@ public class BottomNav extends AppCompatActivity {
             return true;
 
         });
+        String id = getIntent().getStringExtra("idpelanggan");
+        String name = getIntent().getStringExtra("namepelanggan");
+        String status = getIntent().getStringExtra("status");
+        String name_product = getIntent().getStringExtra("name_product");
+
+        Bundle bundle = new Bundle();
+        bundle.putString("idpelanggan", id);
+        bundle.putString("namepelanggan", name);
+        bundle.putString("status", status);
+        bundle.putString("name_product", name_product);
+
+        Fragment berandaFragment = new Beranda();
+        berandaFragment.setArguments(bundle);
+
+        replaceFragment(berandaFragment);
     }
 
     private void replaceFragment(Fragment fragment) {

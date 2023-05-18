@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -44,6 +45,26 @@ public class Beranda extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_beranda, container, false);
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            String id = bundle.getString("idpelanggan");
+            String name = bundle.getString("namepelanggan");
+            String status = bundle.getString("status");
+            String name_product = bundle.getString("name_product");
+
+            // Mendapatkan referensi TextView yang ingin diubah teksnya
+            TextView nameTextView = view.findViewById(R.id.namaUser);
+            TextView statusTextView = view.findViewById(R.id.statusPaket);
+            TextView productTextView = view.findViewById(R.id.namaPaketBerlanggan);
+
+            // Mengatur teks pada TextView
+            nameTextView.setText(name);
+            statusTextView.setText(status);
+            productTextView.setText(name_product);
+        }
+
+
 
         recyclerView = view.findViewById(R.id.listPaket);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
