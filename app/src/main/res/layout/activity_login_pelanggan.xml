@@ -86,7 +86,8 @@
                 android:layout_height="wrap_content"
                 android:text="Sign In"
                 android:textColor="@color/white"
-                android:textSize="15sp"/>
+                android:textSize="15sp"
+                android:onClick="Login2"/>
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"

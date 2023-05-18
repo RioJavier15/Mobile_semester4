@@ -18,37 +18,40 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="17dp"
             >
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Welcome, "
                     android:textColor="@color/fans"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
+
                 <TextView
+                    android:id="@+id/namaUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
                     android:text="Ini diisi user yang login"
                     android:textColor="@color/fans"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="2dp"
-                    android:id="@+id/namaUser"/>
+                    android:textSize="20sp" />
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
+                    android:layout_height="match_parent">
+
                     <RelativeLayout
+                        android:id="@+id/notif"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginEnd="20dp"
                         android:background="@drawable/baseline_notifications_24"
-                        android:layout_alignParentEnd="true"
-                        android:id="@+id/notif"
-                        android:backgroundTint="@color/fans"/>
+                        android:backgroundTint="@color/fans" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -87,14 +90,15 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
+
                                 <TextView
+                                    android:id="@+id/namaPaketBerlanggan"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/statusPaket"
                                     android:text="Belum Berlangganan"
                                     android:textColor="@color/white"
-                                    android:textStyle="bold"
-                                    />
+                                    android:textStyle="bold" />
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -109,32 +113,53 @@
                                     android:text="Buat jaga-jaga Isi dari deskripsi"
                                     android:textColor="@color/grey"
                                     android:id="@+id/isiDeskripsi"/>
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <Button
+                                        android:id="@+id/btnBayar"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginEnd="15dp"
+                                        android:backgroundTint="@color/grey"
+                                        android:text="Bayar"
+                                        android:textColor="@color/fans" />
+
+                                </RelativeLayout>
                             </LinearLayout>
+
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cardStatus"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/custom_edittext"
-                                android:backgroundTint="@color/grey"
-                                app:cardCornerRadius="30dp"
-                                app:cardElevation="5dp"
-                                android:id="@+id/cardStatus"
                                 android:layout_alignParentEnd="true"
                                 android:layout_alignParentBottom="true"
-                                android:clickable="true">
+                                android:background="@drawable/custom_edittext"
+                                android:backgroundTint="@color/grey"
+                                android:clickable="true"
+                                app:cardCornerRadius="30dp"
+                                app:cardElevation="5dp">
+
                                 <LinearLayout
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:padding="3dp"
+                                    android:layout_gravity="center"
                                     android:layout_margin="3dp"
-                                    android:layout_gravity="center">
+                                    android:orientation="vertical"
+                                    android:padding="3dp">
+
                                     <TextView
-                                        android:layout_width="match_parent"
+                                        android:id="@+id/statusPaket"
+                                        android:layout_width="62dp"
                                         android:layout_height="wrap_content"
                                         android:text="non aktif"
                                         android:textAlignment="center"
                                         android:textColor="@color/fans"
-                                        android:textStyle="bold"/>
+                                        android:textStyle="bold" />
                                 </LinearLayout>
                             </androidx.cardview.widget.CardView>
                         </RelativeLayout>
@@ -185,21 +210,6 @@
                         </LinearLayout>
 
                     </LinearLayout>
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Bayar"
-                            android:id="@+id/btnBayar"
-                            android:layout_alignParentBottom="true"
-                            android:layout_alignParentEnd="true"
-                            android:backgroundTint="@color/grey"
-                            android:textColor="@color/fans"
-                            android:layout_marginEnd="15dp"/>
-
-                    </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
                 <LinearLayout
