@@ -70,7 +70,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_marginRight="15dp"
-                    android:layout_height="200dp"
+                    android:layout_height="250dp"
                     android:background="@drawable/custom_edittext"
                     android:backgroundTint="@color/fans"
                     app:cardElevation="5dp"
@@ -97,6 +97,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Belum Berlangganan"
                                     android:textColor="@color/white"
+                                    android:textSize="18sp"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -104,6 +105,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Deskripsi:"
                                     android:id="@+id/deskripsi"
+                                    android:textSize="16sp"
                                     android:textColor="@color/grey"
                                     android:layout_marginTop="5dp"
                                     />
@@ -112,24 +114,10 @@
                                     android:layout_height="match_parent"
                                     android:text="Buat jaga-jaga Isi dari deskripsi"
                                     android:textColor="@color/grey"
+                                    android:textSize="16sp"
                                     android:id="@+id/isiDeskripsi"/>
 
-                                <RelativeLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">
 
-                                    <Button
-                                        android:id="@+id/btnBayar"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentEnd="true"
-                                        android:layout_alignParentBottom="true"
-                                        android:layout_marginEnd="15dp"
-                                        android:backgroundTint="@color/grey"
-                                        android:text="Bayar"
-                                        android:textColor="@color/fans" />
-
-                                </RelativeLayout>
                             </LinearLayout>
 
                             <androidx.cardview.widget.CardView
@@ -182,29 +170,40 @@
                             android:padding="2dp"
                             android:layout_margin="10dp">
                             <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_marginTop="20dp"
                                 android:background="@drawable/outline_timelapse_24"
                                 android:backgroundTint="@color/grey"/>
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:layout_marginLeft="5dp">
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="10dp">
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Tenggat Bayar"
+                                    android:textSize="18sp"
                                     android:textStyle="bold"
                                     android:textColor="@color/white"
                                     android:id="@+id/tenggatBayar"/>
                                 <TextView
                                     android:layout_width="150dp"
                                     android:layout_height="match_parent"
-                                    android:layout_marginTop="2dp"
+                                    android:layout_marginTop="10dp"
                                     android:text="3 hari lagi"
+                                    android:textSize="16sp"
                                     android:textColor="@color/grey"
                                     android:id="@+id/waktuTenggat"/>
+                                <TextView
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="5dp"
+                                    android:text="Sebelum tanggal 23 Desember"
+                                    android:textColor="@color/grey"
+                                    android:id="@+id/batasTenggat"/>
                             </LinearLayout>
 
                         </LinearLayout>
@@ -241,7 +240,7 @@
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
@@ -251,7 +250,7 @@
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/listPaket"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -259,6 +258,21 @@
                             app:layout_constraintTop_toTopOf="parent"
                             tools:listitem="@layout/list_paket"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hubungi Kami"
+                        android:textColor="@color/fans"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        />
                 </LinearLayout>
 
             </LinearLayout>
