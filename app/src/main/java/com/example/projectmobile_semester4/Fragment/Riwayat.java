@@ -65,7 +65,7 @@ public class Riwayat extends Fragment {
                                 String speed = jsonObject.getString("speed");
                                 String idCostumer = jsonObject.getString("id_costumer");
                                 //filter riwayat berdasarkan id
-                                if (idCostumer.equals("63")) {
+                                if (idCostumer.equals("1")) {
                                     Customer customer = new Customer(nameProduct, subscribeDate, speed);
                                     customerList.add(customer);
                                 }
