@@ -2,12 +2,14 @@ package com.example.projectmobile_semester4;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -37,6 +39,7 @@ public class MainActivity2 extends AppCompatActivity {
     TextView textView;
     private EditText etFilter;
     private ArrayList<Pelanggan> filteredPelangganArrayList;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +52,11 @@ public class MainActivity2 extends AppCompatActivity {
         pelangganArrayList = new ArrayList<>();
         adapter = new PelangganAdapter(this, pelangganArrayList);
         listView.setAdapter(adapter);
-
-        String email = getIntent().getStringExtra("email");
-        String name = getIntent().getStringExtra("name");
-        String idTeknisi = getIntent().getStringExtra("idTeknisi");
-        String address = getIntent().getStringExtra("address");
+        sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
+        String email = sharedPreferences.getString("emailTeknisi", "");
+        String name = sharedPreferences.getString("nameTeknisi", "");
+        String idTeknisi = sharedPreferences.getString("idTeknisi", "");
+        String address = sharedPreferences.getString("addressTeknisi", "");
 
 
 
@@ -149,6 +152,23 @@ public class MainActivity2 extends AppCompatActivity {
 
         return new Pelanggan(id, name, username, email, password, phoneNumber, status, address, subscribeDate,
                 productId, productName, speed, price, bandwidth);
+    }
+    public void onBackPressed() {
+//        moveTaskToBack(true);
+//        android.os.Process.killProcess(android.os.Process.myPid());
+//        System.exit(1);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+
+        // Arahkan ke halaman login
+        Intent intent = new Intent(MainActivity2.this, LoginTeknisi.class);
+        startActivity(intent);
+        finish(); // Tutup aktivitas BottomNav agar pengguna tidak dapat kembali ke halaman ini setelah logout
+
+        Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
+
     }
 
 }
