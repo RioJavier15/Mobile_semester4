@@ -1,4 +1,6 @@
 package com.example.projectmobile_semester4.Fragment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -46,12 +48,14 @@ public class Beranda extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_beranda, container, false);
 
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            String id = bundle.getString("idpelanggan");
-            String name = bundle.getString("namepelanggan");
-            String status = bundle.getString("status");
-            String name_product = bundle.getString("name_product");
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
+
+// Mengambil data dari SharedPreferences
+        String status = sharedPreferences.getString("status", "");
+        String name = sharedPreferences.getString("name", "");
+        String id = sharedPreferences.getString("id", "");
+        String name_product = sharedPreferences.getString("name_product", "");
 
             // Mendapatkan referensi TextView yang ingin diubah teksnya
             TextView nameTextView = view.findViewById(R.id.namaUser);
@@ -62,7 +66,7 @@ public class Beranda extends Fragment {
             nameTextView.setText(name);
             statusTextView.setText(status);
             productTextView.setText(name_product);
-        }
+
 
 
 
