@@ -134,5 +134,10 @@ public class LoginTeknisi extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+
+    }
+    public void onBackPressed() {
+        Intent intent = new Intent(LoginTeknisi.this, LoginPertama.class);
+        startActivity(intent);
     }
 }

@@ -64,6 +64,13 @@ public class BottomNav extends AppCompatActivity {
         berandaFragment.setArguments(bundle);
 
         replaceFragment(berandaFragment);
+
+        // Set fragment Profil jika data tambahan "selectedFragment" bernilai "profil"
+        String selectedFragment = getIntent().getStringExtra("selectedFragment");
+        if (selectedFragment != null && selectedFragment.equals("profil")) {
+            replaceFragment(new Profil());
+            binding.bottomNavigationView.setSelectedItemId(R.id.profil);
+        }
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -74,19 +81,10 @@ public class BottomNav extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-//        moveTaskToBack(true);
+        moveTaskToBack(true);
 //        android.os.Process.killProcess(android.os.Process.myPid());
 //        System.exit(1);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
-        editor.apply();
 
-        // Arahkan ke halaman login
-        Intent intent = new Intent(BottomNav.this, LoginPelanggan.class);
-        startActivity(intent);
-        finish(); // Tutup aktivitas BottomNav agar pengguna tidak dapat kembali ke halaman ini setelah logout
-
-        Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
 
     }
 

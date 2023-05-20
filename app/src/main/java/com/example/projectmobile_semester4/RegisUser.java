@@ -22,7 +22,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegisUser extends AppCompatActivity {
+public class RegisUser extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnSignUp;
     private TextView txtLoginDisini;
@@ -42,9 +42,22 @@ public class RegisUser extends AppCompatActivity {
         ed_phone_number = findViewById(R.id.txtNohp);
         ed_address = findViewById(R.id.txtAlamat);
 
+        txtLoginDisini = (TextView) findViewById(R.id.txtLogindisini);
+        txtLoginDisini.setOnClickListener(this);
 
     }
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        switch (id){
 
+            case R.id.txtLogindisini:
+                Intent daftar = new Intent(this,LoginPelanggan.class);
+                startActivity(daftar);
+                break;
+        }
+
+    }
 
     public void Register(View view) {
 
@@ -145,5 +158,10 @@ public class RegisUser extends AppCompatActivity {
         // Validasi menggunakan regular expression
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         return email.matches(emailPattern);
+    }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(RegisUser.this, LoginPelanggan.class);
+        startActivity(intent);
     }
 }

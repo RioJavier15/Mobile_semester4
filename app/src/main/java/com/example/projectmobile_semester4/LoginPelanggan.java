@@ -172,7 +172,10 @@ public class LoginPelanggan extends AppCompatActivity implements View.OnClickLis
             finish();
         }
     }
-
+    public void onBackPressed() {
+        Intent intent = new Intent(LoginPelanggan.this, LoginPertama.class);
+        startActivity(intent);
+    }
 
 
 
