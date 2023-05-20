@@ -1,5 +1,7 @@
 package com.example.projectmobile_semester4.Fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -65,7 +67,9 @@ public class Riwayat extends Fragment {
                                 String speed = jsonObject.getString("speed");
                                 String idCostumer = jsonObject.getString("id_costumer");
                                 //filter riwayat berdasarkan id
-                                if (idCostumer.equals("1")) {
+                                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
+                                String id = sharedPreferences.getString("id", "");
+                                if (idCostumer.equals(id)) {
                                     Customer customer = new Customer(nameProduct, subscribeDate, speed);
                                     customerList.add(customer);
                                 }
