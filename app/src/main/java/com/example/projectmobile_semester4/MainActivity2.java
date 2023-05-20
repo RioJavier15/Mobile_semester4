@@ -40,6 +40,7 @@ public class MainActivity2 extends AppCompatActivity {
     private EditText etFilter;
     private ArrayList<Pelanggan> filteredPelangganArrayList;
     SharedPreferences sharedPreferences;
+    private boolean isFetchingData = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +130,9 @@ public class MainActivity2 extends AppCompatActivity {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                fetchData(); // Ambil data dari server
+                if (isFetchingData) {
+                    fetchData(); // Ambil data dari server
+                }
             }
         }, 0, 2000); // Ambil data setiap 5 detik (5000 ms)
     }
@@ -166,7 +169,7 @@ public class MainActivity2 extends AppCompatActivity {
         Intent intent = new Intent(MainActivity2.this, LoginTeknisi.class);
         startActivity(intent);
         finish(); // Tutup aktivitas BottomNav agar pengguna tidak dapat kembali ke halaman ini setelah logout
-
+        isFetchingData = false;
         Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
 
     }
