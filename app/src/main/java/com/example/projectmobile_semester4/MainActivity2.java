@@ -1,11 +1,15 @@
 package com.example.projectmobile_semester4;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,10 +33,10 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity2 extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
     ActivityMain2Binding binding;
     private static final String ENDPOINT_URL = apiConfig.CUSTOMERS_ENDPOINT;
-
+    SwipeRefreshLayout swipeRefreshLayout;
     private ListView listView;
     private ArrayList<Pelanggan> pelangganArrayList;
     private PelangganAdapter adapter,adapter1;
@@ -40,7 +44,6 @@ public class MainActivity2 extends AppCompatActivity {
     private EditText etFilter;
     private ArrayList<Pelanggan> filteredPelangganArrayList;
     SharedPreferences sharedPreferences;
-    private boolean isFetchingData = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,11 @@ public class MainActivity2 extends AppCompatActivity {
         String idTeknisi = sharedPreferences.getString("idTeknisi", "");
         String address = sharedPreferences.getString("addressTeknisi", "");
 
+        TextView addressTextView = findViewById(R.id.txtLokasiTeknisi);
+        TextView nameTextView = findViewById(R.id.txtTeknisiLogin);
 
+        addressTextView.setText(address);
+        nameTextView.setText(name);
 
         // Set item click listener for the ListView
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -74,8 +81,28 @@ public class MainActivity2 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        startFetchingData();
+        fetchData();
 
+        //logout
+        Button btnLogOut = findViewById(R.id.btnLogoutTeknisi);
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLogoutDialog();
+            }
+        });
+
+        //refresh swipe atas
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(this);
+
+    }
+
+    @Override
+    public void onRefresh() {
+        fetchData();
+        // Set the refreshing state to false when the data has been refreshed
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     private void filterData(String filterAddress) {
@@ -124,18 +151,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         queue.add(request);
     }
-    private void startFetchingData() {
-        // Buat objek Timer untuk menjadwalkan pengambilan data setiap 5 detik
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if (isFetchingData) {
-                    fetchData(); // Ambil data dari server
-                }
-            }
-        }, 0, 2000); // Ambil data setiap 5 detik (5000 ms)
-    }
+
     private Pelanggan parsePelanggan(JSONObject jsonObject) throws JSONException {
         // Parse the JSON object and create a new Pelanggan object
         int id = jsonObject.getInt("id");
@@ -169,9 +185,37 @@ public class MainActivity2 extends AppCompatActivity {
         Intent intent = new Intent(MainActivity2.this, LoginTeknisi.class);
         startActivity(intent);
         finish(); // Tutup aktivitas BottomNav agar pengguna tidak dapat kembali ke halaman ini setelah logout
-        isFetchingData = false;
         Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
 
+    }
+    private void showLogoutDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+        builder.setTitle("Logout");
+        builder.setMessage("Apakah Anda yakin ingin logout?");
+        builder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.apply();
+
+                // Arahkan ke halaman login
+                Intent intent = new Intent(MainActivity2.this, LoginPelanggan.class);
+                startActivity(intent);
+                finish(); // Tutup aktivitas BottomNav agar pengguna tidak dapat kembali ke halaman ini setelah logout
+
+                Toast.makeText(MainActivity2.this, "Logged out", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.projectmobile_semester4;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView txtKodePelanggan, txtNamaPelanggan, txtEmailPelanggan, txtPassword, txtNomerHp, txtStatus,
             txtTanggalBerlangganan, txtKodeProduk, txtNamaProduk, txtKecepatan, txtHargaProduk, txtBandwidth;
     Button btn_Transaksi;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +56,8 @@ public class DetailActivity extends AppCompatActivity {
         txtKecepatan = findViewById(R.id.txt_kecepatan);
         txtHargaProduk = findViewById(R.id.txt_harga_produk);
         txtBandwidth = findViewById(R.id.txt_bandwidth);
-
+        sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
+        String idTeknisi = sharedPreferences.getString("idTeknisi", "");
         // Set the data to TextViews
         txtKodePelanggan.setText(String.valueOf(pelanggan.getId()));
         txtNamaPelanggan.setText(pelanggan.getName());
@@ -67,7 +70,8 @@ public class DetailActivity extends AppCompatActivity {
         txtNamaProduk.setText(pelanggan.getProductName());
         txtKecepatan.setText(pelanggan.getSpeed());
         txtHargaProduk.setText(pelanggan.getPrice());
-        txtBandwidth.setText(pelanggan.getBandwidth());
+        txtBandwidth.setText(idTeknisi);
+
 
         btn_Transaksi = findViewById(R.id.btnTransaksi);
 
@@ -120,7 +124,8 @@ public class DetailActivity extends AppCompatActivity {
                     Date date = new Date();
                     String currentDate = dateFormat.format(date);
 
-                    String idTeknisi = getIntent().getStringExtra("idTeknisi");
+                    sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
+                    String idTeknisi = sharedPreferences.getString("idTeknisi", "");
 
                     params.put("date_transaction",currentDate);
                     params.put("total",txtHargaProduk.getText().toString().trim());
@@ -150,13 +155,11 @@ public class DetailActivity extends AppCompatActivity {
                     public void onResponse(String response) {
 
                         Toast.makeText(DetailActivity.this, response, Toast.LENGTH_SHORT).show();
-
-                        Intent intent = new Intent(DetailActivity.this, MainActivity2.class);
-                        String idTeknisi = getIntent().getStringExtra("idTeknisi");
-                        intent.putExtra("idTeknisi", idTeknisi);
-//                        startActivity(new Intent(getApplicationContext(),MainActivity2.class));
-                        finish();
                         progressDialog.dismiss();
+                        finish();
+                        Intent intent = new Intent(DetailActivity.this, MainActivity2.class);
+                        startActivity(intent);
+
                     }
                 }, new Response.ErrorListener() {
             @Override
