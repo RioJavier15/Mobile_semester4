@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="fans">#30475E</color>
     <color name="lavender">#8692f7</color>
+    <color name="grey">#DADADA</color>
+    <color name="blue">#000099</color>
 </resources>

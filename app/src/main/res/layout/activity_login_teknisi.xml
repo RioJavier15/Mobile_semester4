@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LoginPelanggan">
+    tools:context=".LoginTeknisi">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="120dp"
@@ -51,7 +51,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/txtUser"
+                android:id="@+id/txtUserTeknisi"
                 android:background="@drawable/custom_edittext"
                 android:drawableLeft="@drawable/baseline_person_24"
                 android:padding="8dp"
@@ -71,7 +71,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/txtPassword"
+                android:id="@+id/txtPasswordTeknisi"
                 android:background="@drawable/custom_edittext"
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:padding="8dp"
@@ -80,32 +80,15 @@
                 android:hint="Masukkan Password"
                 android:textColor="@color/black"/>
             <Button
-                android:id="@+id/btnSignIn"
+                android:id="@+id/btnSignInTeknisi"
                 android:layout_marginTop="40dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sign In"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                android:onClick="Login2"/>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Belum punya akun?"/>
-                <TextView
-                    android:id="@+id/txtDaftar"
-                    android:layout_marginLeft="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Daftar di sini"
-                    android:textColor="@color/fans"
-                    android:clickable="true"/>
-            </LinearLayout>
+                android:onClick="Login"/>
+
         </LinearLayout>
 
 

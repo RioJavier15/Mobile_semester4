@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/beranda"
+        android:title="Beranda"
+        android:iconTint="@color/fans"
+        android:icon="@drawable/outline_home_24"/>
+
+    <item
+        android:id="@+id/riwayat"
+        android:title="Riwayat"
+        android:iconTint="@color/fans"
+        android:icon="@drawable/outline_history_24"/>
+
+
+    <item
+        android:id="@+id/profil"
+        android:iconTint="@color/fans"
+        android:title="Profil"
+        android:icon="@drawable/baseline_person_outline_24"/>
+
+
+
+</menu>

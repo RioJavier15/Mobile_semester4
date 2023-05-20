@@ -1,4 +1,4 @@
-package com.example.projectmobile_semester4;
+package com.example.projectmobile_semester4.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.example.projectmobile_semester4.Model.Pelanggan;
+import com.example.projectmobile_semester4.R;
 
 import java.util.ArrayList;
 
@@ -23,14 +26,15 @@ public class PelangganAdapter extends ArrayAdapter<Pelanggan> {
         }
 
         TextView tvNama = (TextView) convertView.findViewById(R.id.listName);
-        TextView tvEmail = (TextView) convertView.findViewById(R.id.alamat);
-        TextView tvAlamat = (TextView) convertView.findViewById(R.id.listTime);
+        TextView tvAlamat = (TextView) convertView.findViewById(R.id.alamat);
+        TextView tvStatus = (TextView) convertView.findViewById(R.id.listTime);
 
-        tvNama.setText(pelanggan.getNama_pelanggan());
-        tvEmail.setText(pelanggan.getEmail_pelanggan());
-        tvAlamat.setText(pelanggan.getStatus());
+        tvNama.setText(pelanggan.getName());
+        tvAlamat.setText(pelanggan.getAddress());
+        tvStatus.setText(pelanggan.getStatus());
 
         return convertView;
     }
+
 }
 
