@@ -17,10 +17,19 @@ import java.util.List;
 public class JenisPaketAdapter extends RecyclerView.Adapter<JenisPaketAdapter.JenisPaketHolder> {
     private List<JenisPaket> jenisPaketList;
     private Context context;
+    private OnItemClickListener listener;
 
-    public JenisPaketAdapter(List<JenisPaket> jenisPaketList, Context context){
+    public JenisPaketAdapter(List<JenisPaket> jenisPaketList, Context context) {
         this.jenisPaketList = jenisPaketList;
         this.context = context;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(JenisPaket jenisPaket);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -32,17 +41,28 @@ public class JenisPaketAdapter extends RecyclerView.Adapter<JenisPaketAdapter.Je
 
     @Override
     public void onBindViewHolder(@NonNull JenisPaketHolder holder, int position) {
-        JenisPaket jenisPaket= jenisPaketList.get(position);
+        JenisPaket jenisPaket = jenisPaketList.get(position);
         holder.txtNamaPaket.setText(jenisPaket.getNamaPaket());
         holder.txtKecepatan.setText(jenisPaket.getKecepatan());
         holder.txtHargaPaket.setText(jenisPaket.getHargaPaket());
+
+        // Set click listener on item view
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onItemClick(jenisPaket);
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return jenisPaketList.size();
     }
-    public static class JenisPaketHolder extends RecyclerView.ViewHolder{
+
+    public static class JenisPaketHolder extends RecyclerView.ViewHolder {
         TextView txtNamaPaket, txtKecepatan, txtHargaPaket;
 
         public JenisPaketHolder(@NonNull View itemView) {
@@ -53,5 +73,3 @@ public class JenisPaketAdapter extends RecyclerView.Adapter<JenisPaketAdapter.Je
         }
     }
 }
-
-
