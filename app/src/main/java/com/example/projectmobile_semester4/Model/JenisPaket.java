@@ -5,14 +5,14 @@ public class JenisPaket {
     private String namaPaket;
     private String kecepatan;
     private String hargaPaket;
-    private String bandwidth;
+    private String foto;
 
-    public JenisPaket(int id, String namaPaket, String kecepatan, String hargaPaket, String bandwidth) {
+    public JenisPaket(int id, String namaPaket, String kecepatan, String hargaPaket, String foto) {
         this.id = id;
         this.namaPaket = namaPaket;
         this.kecepatan = kecepatan;
         this.hargaPaket = hargaPaket;
-        this.bandwidth = bandwidth;
+        this.foto = foto;
     }
 
     public int getId() {
@@ -31,7 +31,7 @@ public class JenisPaket {
         return hargaPaket;
     }
 
-    public String getBandwidth() {
-        return bandwidth;
+    public String getFoto() {
+        return foto;
     }
 }

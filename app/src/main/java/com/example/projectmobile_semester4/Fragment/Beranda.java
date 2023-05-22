@@ -1,4 +1,5 @@
 package com.example.projectmobile_semester4.Fragment;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,8 @@ import com.example.projectmobile_semester4.Adapter.JenisPaketAdapter;
 import com.example.projectmobile_semester4.Model.JenisPaket;
 import com.example.projectmobile_semester4.R;
 import com.example.projectmobile_semester4.apiConfig;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,7 +35,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Beranda extends Fragment {
+public class Beranda extends Fragment implements JenisPaketAdapter.OnItemClickListener {
     private RecyclerView recyclerView;
     private JenisPaketAdapter adapter;
     private List<JenisPaket> jenisPaketList;
@@ -48,27 +52,23 @@ public class Beranda extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_beranda, container, false);
 
-
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
 
-// Mengambil data dari SharedPreferences
+        // Mengambil data dari SharedPreferences
         String status = sharedPreferences.getString("status", "");
         String name = sharedPreferences.getString("name", "");
         String id = sharedPreferences.getString("id", "");
         String name_product = sharedPreferences.getString("name_product", "");
 
-            // Mendapatkan referensi TextView yang ingin diubah teksnya
-            TextView nameTextView = view.findViewById(R.id.namaUser);
-            TextView statusTextView = view.findViewById(R.id.statusPaket);
-            TextView productTextView = view.findViewById(R.id.namaPaketBerlanggan);
+        // Mendapatkan referensi TextView yang ingin diubah teksnya
+        TextView nameTextView = view.findViewById(R.id.namaUser);
+        TextView statusTextView = view.findViewById(R.id.statusPaket);
+        TextView productTextView = view.findViewById(R.id.namaPaketBerlanggan);
 
-            // Mengatur teks pada TextView
-            nameTextView.setText(name);
-            statusTextView.setText(status);
-            productTextView.setText(name_product);
-
-
-
+        // Mengatur teks pada TextView
+        nameTextView.setText(name);
+        statusTextView.setText(status);
+        productTextView.setText(name_product);
 
         recyclerView = view.findViewById(R.id.listPaket);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
@@ -88,12 +88,13 @@ public class Beranda extends Fragment {
                                 String nameProduct = jsonObject.getString("name_product");
                                 String speed = jsonObject.getString("speed");
                                 String price = jsonObject.getString("price");
-                                String bandwidth = jsonObject.getString("bandwith");
+                                String foto = jsonObject.getString("foto");
 
-                                JenisPaket jenisPaket = new JenisPaket(id, nameProduct, speed, price, bandwidth);
+                                JenisPaket jenisPaket = new JenisPaket(id, nameProduct, speed, price, foto);
                                 jenisPaketList.add(jenisPaket);
                             }
                             adapter = new JenisPaketAdapter(jenisPaketList, getActivity());
+                            adapter.setOnItemClickListener(Beranda.this); // Menambahkan listener klik pada adapter
                             recyclerView.setAdapter(adapter);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -109,5 +110,31 @@ public class Beranda extends Fragment {
         requestQueue.add(request);
 
         return view;
+    }
+
+    @Override
+    public void onItemClick(JenisPaket jenisPaket) {
+        // Menampilkan BottomSheetLayout dan mengatur teks pada TextView harga
+        View bottomSheetView = LayoutInflater.from(getActivity()).inflate(R.layout.bottomsheetlayout, null);
+        TextView hargaTextView = bottomSheetView.findViewById(R.id.harga);
+        hargaTextView.setText(jenisPaket.getHargaPaket());
+
+        // Mengambil referensi ImageView dengan ID "barcode"
+        ImageView barcodeImageView = bottomSheetView.findViewById(R.id.barcode);
+
+        // Menggunakan library Picasso/Glide/Fresco/Universal Image Loader untuk memuat gambar dari URL
+        Picasso.get().load(apiConfig.URL+"/storage/foto_produk/"+jenisPaket.getFoto()).into(barcodeImageView);
+
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getActivity());
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
+
+        ImageView cancelButton = bottomSheetView.findViewById(R.id.cancelButton);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetDialog.dismiss();
+            }
+        });
     }
 }
