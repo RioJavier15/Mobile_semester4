@@ -173,19 +173,8 @@ public class MainActivity2 extends AppCompatActivity implements SwipeRefreshLayo
                 productId, productName, speed, price, bandwidth);
     }
     public void onBackPressed() {
-//        moveTaskToBack(true);
-//        android.os.Process.killProcess(android.os.Process.myPid());
-//        System.exit(1);
+        moveTaskToBack(true);
 
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
-        editor.apply();
-
-        // Arahkan ke halaman login
-        Intent intent = new Intent(MainActivity2.this, LoginTeknisi.class);
-        startActivity(intent);
-        finish(); // Tutup aktivitas BottomNav agar pengguna tidak dapat kembali ke halaman ini setelah logout
-        Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
 
     }
     private void showLogoutDialog() {

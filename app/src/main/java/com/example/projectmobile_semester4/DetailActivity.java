@@ -29,7 +29,7 @@ import java.util.Map;
 public class DetailActivity extends AppCompatActivity {
 
     private TextView txtKodePelanggan, txtNamaPelanggan, txtEmailPelanggan, txtPassword, txtNomerHp, txtStatus,
-            txtTanggalBerlangganan, txtKodeProduk, txtNamaProduk, txtKecepatan, txtHargaProduk, txtBandwidth;
+            txtTanggalBerlangganan, txtKodeProduk, txtNamaProduk, txtKecepatan, txtHargaProduk, txtAddress;
     Button btn_Transaksi;
     SharedPreferences sharedPreferences;
     @Override
@@ -55,22 +55,20 @@ public class DetailActivity extends AppCompatActivity {
         txtNamaProduk = findViewById(R.id.txt_nama_produk);
         txtKecepatan = findViewById(R.id.txt_kecepatan);
         txtHargaProduk = findViewById(R.id.txt_harga_produk);
-        txtBandwidth = findViewById(R.id.txt_bandwidth);
+        txtAddress = findViewById(R.id.txt_addressDetail);
         sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
         String idTeknisi = sharedPreferences.getString("idTeknisi", "");
         // Set the data to TextViews
         txtKodePelanggan.setText(String.valueOf(pelanggan.getId()));
+
         txtNamaPelanggan.setText(pelanggan.getName());
-        txtEmailPelanggan.setText(pelanggan.getEmail());
-        txtPassword.setText(pelanggan.getPassword());
         txtNomerHp.setText(pelanggan.getPhoneNumber());
         txtStatus.setText(pelanggan.getStatus());
         txtTanggalBerlangganan.setText(pelanggan.getSubscribeDate());
-        txtKodeProduk.setText(String.valueOf(pelanggan.getProductId()));
         txtNamaProduk.setText(pelanggan.getProductName());
         txtKecepatan.setText(pelanggan.getSpeed());
         txtHargaProduk.setText(pelanggan.getPrice());
-        txtBandwidth.setText(idTeknisi);
+        txtAddress.setText(pelanggan.getAddress());
 
 
         btn_Transaksi = findViewById(R.id.btnTransaksi);
