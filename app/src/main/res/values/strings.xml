@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Recipe Book</string>
+    <string name="app_name">Fans Vision</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="alamat_fans">Perum Griya Mangli Indah blok DF 1A, Kec.
+Kaliwates, Kab. Jember, Jawa Timur 68131</string>
 </resources>

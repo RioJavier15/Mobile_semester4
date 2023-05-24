@@ -68,6 +68,7 @@ public class MainActivity2 extends AppCompatActivity implements SwipeRefreshLayo
         addressTextView.setText(address);
         nameTextView.setText(name);
 
+
         // Set item click listener for the ListView
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -189,7 +190,7 @@ public class MainActivity2 extends AppCompatActivity implements SwipeRefreshLayo
                 editor.apply();
 
                 // Arahkan ke halaman login
-                Intent intent = new Intent(MainActivity2.this, LoginPelanggan.class);
+                Intent intent = new Intent(MainActivity2.this, LoginTeknisi.class);
                 startActivity(intent);
                 finish(); // Tutup aktivitas BottomNav agar pengguna tidak dapat kembali ke halaman ini setelah logout
 

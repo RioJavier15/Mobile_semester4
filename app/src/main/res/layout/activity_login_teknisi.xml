@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="Login Teknisi"
             android:layout_marginTop="50dp"
             android:layout_gravity="center"
             android:textSize="35sp"

@@ -65,12 +65,13 @@ public class Riwayat extends Fragment {
                                 String nameProduct = jsonObject.getString("name_product");
                                 String subscribeDate = jsonObject.getString("subcribe_date");
                                 String speed = jsonObject.getString("speed");
+                                String tanggal = jsonObject.getString("date_transaction");
                                 String idCostumer = jsonObject.getString("id_costumer");
                                 //filter riwayat berdasarkan id
                                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
                                 String id = sharedPreferences.getString("id", "");
                                 if (idCostumer.equals(id)) {
-                                    Customer customer = new Customer(nameProduct, subscribeDate, speed);
+                                    Customer customer = new Customer(nameProduct, subscribeDate, speed, tanggal);
                                     customerList.add(customer);
                                 }
                             } catch (JSONException e) {
@@ -97,10 +98,14 @@ public class Riwayat extends Fragment {
         private String subscribeDate;
         private String speed;
 
-        public Customer(String nameProduct, String subscribeDate, String speed) {
+        private String tanggal;
+
+        public Customer(String nameProduct, String subscribeDate, String speed, String tanggal) {
             this.nameProduct = nameProduct;
             this.subscribeDate = subscribeDate;
             this.speed = speed;
+            this.tanggal = tanggal;
+
         }
 
         public String getNameProduct() {
@@ -113,6 +118,10 @@ public class Riwayat extends Fragment {
 
         public String getSpeed() {
             return speed;
+        }
+
+        public String getTanggal() {
+            return tanggal;
         }
     }
 
