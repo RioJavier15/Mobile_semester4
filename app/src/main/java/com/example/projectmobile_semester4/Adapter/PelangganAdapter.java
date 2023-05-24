@@ -28,10 +28,13 @@ public class PelangganAdapter extends ArrayAdapter<Pelanggan> {
         TextView tvNama = (TextView) convertView.findViewById(R.id.listName);
         TextView tvAlamat = (TextView) convertView.findViewById(R.id.alamat);
         TextView tvStatus = (TextView) convertView.findViewById(R.id.listTime);
+        TextView tvFoto = (TextView) convertView.findViewById(R.id.hurufAwal);
+        String firstInitial = String.valueOf(pelanggan.getName().charAt(0));
 
         tvNama.setText(pelanggan.getName());
         tvAlamat.setText(pelanggan.getAddress());
         tvStatus.setText(pelanggan.getStatus());
+        tvFoto.setText(firstInitial);
 
         return convertView;
     }

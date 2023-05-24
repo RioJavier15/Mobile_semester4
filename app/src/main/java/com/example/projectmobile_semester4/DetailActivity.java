@@ -1,6 +1,8 @@
 package com.example.projectmobile_semester4;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
@@ -20,6 +23,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.projectmobile_semester4.Model.Pelanggan;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,8 +34,8 @@ import java.util.Map;
 
 public class DetailActivity extends AppCompatActivity {
 
-    private TextView txtKodePelanggan, txtNamaPelanggan, txtEmailPelanggan, txtPassword, txtNomerHp, txtStatus,
-            txtTanggalBerlangganan, txtKodeProduk, txtNamaProduk, txtKecepatan, txtHargaProduk, txtAddress;
+    private TextView txtKodePelanggan, txtNamaPelanggan, txtNomerHp, txtStatus,
+            txtTanggalBerlangganan, txtNamaProduk, txtKecepatan, txtHargaProduk, txtAddress,txtTot;
     Button btn_Transaksi;
     SharedPreferences sharedPreferences;
     @Override
@@ -45,22 +51,20 @@ public class DetailActivity extends AppCompatActivity {
 
         // Initialize TextViews
         txtKodePelanggan = findViewById(R.id.txt_kode_pelanggan);
+        txtKodePelanggan.setVisibility(View.GONE);
         txtNamaPelanggan = findViewById(R.id.txt_nama_pelanggan);
-        txtEmailPelanggan = findViewById(R.id.txt_email_pelanggan);
-        txtPassword = findViewById(R.id.txt_password);
         txtNomerHp = findViewById(R.id.txt_nomer_hp);
         txtStatus = findViewById(R.id.txt_status);
         txtTanggalBerlangganan = findViewById(R.id.txt_tanggal_berlangganan);
-        txtKodeProduk = findViewById(R.id.txt_kode_produk);
         txtNamaProduk = findViewById(R.id.txt_nama_produk);
         txtKecepatan = findViewById(R.id.txt_kecepatan);
         txtHargaProduk = findViewById(R.id.txt_harga_produk);
         txtAddress = findViewById(R.id.txt_addressDetail);
+        txtTot = findViewById(R.id.txt_total);
         sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
         String idTeknisi = sharedPreferences.getString("idTeknisi", "");
         // Set the data to TextViews
         txtKodePelanggan.setText(String.valueOf(pelanggan.getId()));
-
         txtNamaPelanggan.setText(pelanggan.getName());
         txtNomerHp.setText(pelanggan.getPhoneNumber());
         txtStatus.setText(pelanggan.getStatus());
@@ -69,6 +73,9 @@ public class DetailActivity extends AppCompatActivity {
         txtKecepatan.setText(pelanggan.getSpeed());
         txtHargaProduk.setText(pelanggan.getPrice());
         txtAddress.setText(pelanggan.getAddress());
+        txtTot.setText(pelanggan.getPrice());
+
+
 
 
         btn_Transaksi = findViewById(R.id.btnTransaksi);
@@ -77,9 +84,35 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
+                builder.setTitle("Bayar");
+                builder.setMessage("Apakah Anda yakin ingin bayar?");
+                builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                insertData();
-                btn_updateData();
+                        insertData();
+                        btn_updateData();
+//                        expired(pelanggan.getId());
+                    }
+                });
+                builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+        // Tombol kembali (back button)
+        Button btnBack = findViewById(R.id.btnKembaliTeknisi);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 
@@ -182,4 +215,47 @@ public class DetailActivity extends AppCompatActivity {
         requestQueue.add(request);
 
     }
+    private void expired(int pelangganId) {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+        StringRequest request = new StringRequest(Request.Method.POST, apiConfig.EXPIRED,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.dismiss();
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String message = jsonObject.getString("message");
+                            if (message.equals("Berhasil")) {
+
+                            } else {
+                                // Proses gagal
+                                Toast.makeText(DetailActivity.this, "Failed to update data", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(DetailActivity.this, "An error occurred", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+                Toast.makeText(DetailActivity.this, "An error occurred", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", String.valueOf(pelangganId));
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(DetailActivity.this);
+        requestQueue.add(request);
+    }
+
 }

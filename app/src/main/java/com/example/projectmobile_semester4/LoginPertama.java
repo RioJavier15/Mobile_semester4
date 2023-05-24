@@ -67,4 +67,7 @@ public class LoginPertama extends AppCompatActivity implements View.OnClickListe
             finish();
         }
     }
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 }
