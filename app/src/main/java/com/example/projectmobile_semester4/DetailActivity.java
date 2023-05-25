@@ -93,7 +93,7 @@ public class DetailActivity extends AppCompatActivity {
 
                         insertData();
                         btn_updateData();
-//                        expired(pelanggan.getId());
+                        expired(pelanggan.getId());
                     }
                 });
                 builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {

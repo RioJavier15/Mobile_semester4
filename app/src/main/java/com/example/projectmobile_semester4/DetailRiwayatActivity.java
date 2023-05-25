@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class DetailRiwayatActivity extends AppCompatActivity {
@@ -14,6 +16,7 @@ public class DetailRiwayatActivity extends AppCompatActivity {
     private TextView txtPrice;
     private TextView txtAddress;
     private SharedPreferences sharedPreferences;
+    private Button btnKembaliRiwayat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,7 @@ public class DetailRiwayatActivity extends AppCompatActivity {
         txtSpeed = findViewById(R.id.txt_kecepatan);
         txtPrice = findViewById(R.id.txt_harga_produk);
         txtAddress = findViewById(R.id.txt_addressDetail);
+        btnKembaliRiwayat = findViewById(R.id.btnKembaliRiwayat);
 
 
         // Mendapatkan data yang diterima melalui Intent
@@ -44,6 +48,14 @@ public class DetailRiwayatActivity extends AppCompatActivity {
         txtSpeed.setText(speed);
         txtPrice.setText(price);
         txtAddress.setText(address);
+        // Menambahkan onClickListener untuk tombol kembali
+        btnKembaliRiwayat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Mengakhiri activity dan kembali ke activity sebelumnya
+            }
+        });
 
     }
+
 }
