@@ -24,6 +24,7 @@
         <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/drawable/ic_round_remove_24.xml" value="0.159" />
         <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/layout/activity_bottom_nav.xml" value="0.22447916666666667" />
         <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/layout/activity_detail.xml" value="0.22447916666666667" />
+        <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/layout/activity_detail_riwayat.xml" value="0.22447916666666667" />
         <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/layout/activity_detailed.xml" value="0.1" />
         <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/layout/activity_edit_password.xml" value="0.22447916666666667" />
         <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/layout/activity_edit_profil.xml" value="0.1" />
@@ -31,7 +32,7 @@
         <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/layout/activity_login_teknisi.xml" value="0.2203125" />
         <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/layout/activity_main.xml" value="0.22447916666666667" />
         <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/layout/activity_main2.xml" value="0.1" />
-        <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/layout/activity_regis_user.xml" value="0.2203125" />
+        <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/layout/activity_regis_user.xml" value="0.1" />
         <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/layout/bottomsheetlayout.xml" value="0.22447916666666667" />
         <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/layout/fragment_beranda.xml" value="0.22447916666666667" />
         <entry key="..\:/Tugas/s4/Mobile_semester4/app/src/main/res/layout/fragment_profil.xml" value="0.2203125" />
