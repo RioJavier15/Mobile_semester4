@@ -277,7 +277,9 @@
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:id="@+id/kontak"
+                    tools:listitem="@layout/list_contact">
 
                 </androidx.recyclerview.widget.RecyclerView>
 

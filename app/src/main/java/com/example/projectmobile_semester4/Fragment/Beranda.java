@@ -21,7 +21,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.projectmobile_semester4.Adapter.ContactAdapter;
 import com.example.projectmobile_semester4.Adapter.JenisPaketAdapter;
+import com.example.projectmobile_semester4.Model.ContactModel;
+import com.example.projectmobile_semester4.Model.CustomerRiwayat;
 import com.example.projectmobile_semester4.Model.JenisPaket;
 import com.example.projectmobile_semester4.R;
 import com.example.projectmobile_semester4.apiConfig;
@@ -36,11 +39,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Beranda extends Fragment implements JenisPaketAdapter.OnItemClickListener {
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerView,recyclerViewContact;
     private JenisPaketAdapter adapter;
     private List<JenisPaket> jenisPaketList;
     private RequestQueue requestQueue;
     private String url = apiConfig.BERANDA;
+    private ArrayList<ContactModel> contactList;
+
 
     public Beranda() {
         // Required empty public constructor
@@ -108,6 +113,18 @@ public class Beranda extends Fragment implements JenisPaketAdapter.OnItemClickLi
         });
 
         requestQueue.add(request);
+
+
+        recyclerViewContact = view.findViewById(R.id.kontak);
+        recyclerViewContact.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        contactList = new ArrayList<>();
+        ContactAdapter contactAdapter = new ContactAdapter(contactList, getActivity());
+        recyclerViewContact.setAdapter(contactAdapter);
+        contactList.add(new ContactModel(R.drawable.admin, "Admin", "+6281332499299", "Hallo min saya ingin berlangganan"));
+        contactList.add(new ContactModel(R.drawable.teknisi, "Teknisi", "+6282231678985","Hallo pak saya ada kendala jaringan"));
+
+// Notifikasi adapter bahwa data telah berubah
+        contactAdapter.notifyDataSetChanged();
 
         return view;
     }
