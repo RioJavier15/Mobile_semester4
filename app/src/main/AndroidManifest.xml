@@ -57,6 +57,9 @@
         <activity
             android:name=".MainActivity2"
             android:exported="false" />
+        <activity
+            android:name=".DetailRiwayatActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

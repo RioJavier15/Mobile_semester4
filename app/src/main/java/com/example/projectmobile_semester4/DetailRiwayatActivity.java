@@ -3,6 +3,7 @@ package com.example.projectmobile_semester4;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -10,6 +11,10 @@ public class DetailRiwayatActivity extends AppCompatActivity {
     private TextView txtNameProduct;
     private TextView txtSubscribeDate;
     private TextView txtSpeed;
+    private TextView txtPrice;
+    private TextView txtAddress;
+    private SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +23,8 @@ public class DetailRiwayatActivity extends AppCompatActivity {
         txtNameProduct = findViewById(R.id.txt_nama_produk);
         txtSubscribeDate = findViewById(R.id.txt_tanggal_berlangganan);
         txtSpeed = findViewById(R.id.txt_kecepatan);
+        txtPrice = findViewById(R.id.txt_harga_produk);
+        txtAddress = findViewById(R.id.txt_addressDetail);
 
 
         // Mendapatkan data yang diterima melalui Intent
@@ -25,12 +32,18 @@ public class DetailRiwayatActivity extends AppCompatActivity {
         String nameProduct = intent.getStringExtra("nameProduct");
         String subscribeDate = intent.getStringExtra("subscribeDate");
         String speed = intent.getStringExtra("speed");
+        String price = intent.getStringExtra("price");
+
+        sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
+        String address = sharedPreferences.getString("address", "");
 
 
         // Mengatur nilai TextView dengan data yang diterima
         txtNameProduct.setText(nameProduct);
         txtSubscribeDate.setText(subscribeDate);
         txtSpeed.setText(speed);
+        txtPrice.setText(price);
+        txtAddress.setText(address);
 
     }
 }
