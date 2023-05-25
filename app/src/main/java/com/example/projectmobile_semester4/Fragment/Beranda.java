@@ -120,8 +120,8 @@ public class Beranda extends Fragment implements JenisPaketAdapter.OnItemClickLi
         contactList = new ArrayList<>();
         ContactAdapter contactAdapter = new ContactAdapter(contactList, getActivity());
         recyclerViewContact.setAdapter(contactAdapter);
-        contactList.add(new ContactModel(R.drawable.admin, "Admin"));
-        contactList.add(new ContactModel(R.drawable.teknisi, "Teknisi"));
+        contactList.add(new ContactModel(R.drawable.admin, "Admin", "+6281332499299", "Hallo min saya ingin berlangganan"));
+        contactList.add(new ContactModel(R.drawable.teknisi, "Teknisi", "+6282231678985","Hallo pak saya ada kendala jaringan"));
 
 // Notifikasi adapter bahwa data telah berubah
         contactAdapter.notifyDataSetChanged();
