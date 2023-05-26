@@ -3,7 +3,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dialogbg">
+    android:background="@drawable/dialogbg"
+    android:clipToOutline="true">
+
 
     <ImageView
         android:layout_width="70dp"
@@ -24,7 +26,7 @@
             android:textAlignment="viewStart"
             android:text="Create"
             android:padding="8dp"
-            android:textColor="@color/lavender"
+            android:textColor="@color/fans"
             android:layout_marginStart="12dp"
             android:layout_marginTop="5dp"
             android:textSize="25dp" />
@@ -58,9 +60,14 @@
         <ImageView
             android:id="@+id/barcode"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/barcode"/>
-
+            android:layout_height="361dp"
+            android:src="@drawable/barcode" />
     </LinearLayout>
+    <Button
+        android:id="@+id/btnBayar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bayar"
+        android:layout_margin="16dp" />
 
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.projectmobile_semester4.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,10 +25,13 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.projectmobile_semester4.Adapter.ContactAdapter;
 import com.example.projectmobile_semester4.Adapter.JenisPaketAdapter;
+import com.example.projectmobile_semester4.LoginPelanggan;
+import com.example.projectmobile_semester4.LoginPertama;
 import com.example.projectmobile_semester4.Model.ContactModel;
 import com.example.projectmobile_semester4.Model.CustomerRiwayat;
 import com.example.projectmobile_semester4.Model.JenisPaket;
 import com.example.projectmobile_semester4.R;
+import com.example.projectmobile_semester4.TransactionActivity;
 import com.example.projectmobile_semester4.apiConfig;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
@@ -35,7 +40,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Beranda extends Fragment implements JenisPaketAdapter.OnItemClickListener {
@@ -45,7 +53,7 @@ public class Beranda extends Fragment implements JenisPaketAdapter.OnItemClickLi
     private RequestQueue requestQueue;
     private String url = apiConfig.BERANDA;
     private ArrayList<ContactModel> contactList;
-
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     public Beranda() {
         // Required empty public constructor
@@ -64,6 +72,41 @@ public class Beranda extends Fragment implements JenisPaketAdapter.OnItemClickLi
         String name = sharedPreferences.getString("name", "");
         String id = sharedPreferences.getString("id", "");
         String name_product = sharedPreferences.getString("name_product", "");
+        String subcribe_date = sharedPreferences.getString("subcribe_date", "");
+
+        try {
+            // Konversi tanggal subscribe_date menjadi objek Date
+            Date subscribeDate = DATE_FORMAT.parse(subcribe_date);
+
+            // Buat objek Calendar dan atur tanggalnya sebagai subscribe_date
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(subscribeDate);
+
+            // Tambahkan 30 hari
+            calendar.add(Calendar.DAY_OF_MONTH, 30);
+
+            // Dapatkan tanggal setelah penambahan 30 hari
+            Date newDate = calendar.getTime();
+
+            // Format ulang tanggal menjadi string
+            String newDateStr = DATE_FORMAT.format(newDate);
+            TextView TenggattanggalTextView = view.findViewById(R.id.batasTenggat);
+            TenggattanggalTextView.setText("Sebelum tanggal "+newDateStr);
+            // Mendapatkan tanggal sekarang
+            Date tanggalSekarang = Calendar.getInstance().getTime();
+            // Mengurangi tanggal newDate dari subscribe_date
+            long differenceInMillis = newDate.getTime() - tanggalSekarang.getTime();
+
+            // Mengubah selisih waktu menjadi jumlah hari
+            int differenceInDays = (int) (differenceInMillis / (24 * 60 * 60 * 1000));
+
+            TextView WaktuTenggatTextView = view.findViewById(R.id.waktuTenggat);
+            WaktuTenggatTextView.setText(differenceInDays+ " hari lagi");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         // Mendapatkan referensi TextView yang ingin diubah teksnya
         TextView nameTextView = view.findViewById(R.id.namaUser);
@@ -151,6 +194,14 @@ public class Beranda extends Fragment implements JenisPaketAdapter.OnItemClickLi
             @Override
             public void onClick(View v) {
                 bottomSheetDialog.dismiss();
+            }
+        });
+        Button BayarButton = bottomSheetView.findViewById(R.id.btnBayar);
+        BayarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TransactionActivity.class);
+                startActivity(intent);
             }
         });
     }
