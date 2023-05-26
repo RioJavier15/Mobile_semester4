@@ -27,6 +27,7 @@ public class EditPassword extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     EditText editTextPassword, editTextConfirmPassword;
     Button btnSave;
+    private Button btnKembali;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +38,19 @@ public class EditPassword extends AppCompatActivity {
         editTextPassword = findViewById(R.id.txtPassEdit);
         editTextConfirmPassword = findViewById(R.id.txtPassConfirmEdit);
         btnSave = findViewById(R.id.btnSavePass);
+        btnKembali = findViewById(R.id.btnKembaliGantiPassword);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 updatePassword();
+            }
+        });
+        // Menambahkan onClickListener untuk tombol kembali
+        btnKembali.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Mengakhiri activity dan kembali ke activity sebelumnya
             }
         });
     }

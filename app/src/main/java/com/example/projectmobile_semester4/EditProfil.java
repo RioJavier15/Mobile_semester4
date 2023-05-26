@@ -26,6 +26,7 @@ import java.util.Map;
 public class EditProfil extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
+    private Button btnKembali;
     EditText editTextEmail,editTextName,editTextAddress,editTextPhoneNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class EditProfil extends AppCompatActivity {
         editTextName = findViewById(R.id.txtUsernameEdit);
         editTextAddress = findViewById(R.id.txtAlamatEdit);
         editTextPhoneNumber = findViewById(R.id.txtNohpEdit);
+        btnKembali = findViewById(R.id.btnKembali);
 
         editTextEmail.setText(email);
         editTextName.setText(name);
@@ -51,6 +53,13 @@ public class EditProfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 updateProfil();
+            }
+        });
+        // Menambahkan onClickListener untuk tombol kembali
+        btnKembali.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Mengakhiri activity dan kembali ke activity sebelumnya
             }
         });
     }
