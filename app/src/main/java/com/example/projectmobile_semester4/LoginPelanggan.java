@@ -105,6 +105,7 @@ public class LoginPelanggan extends AppCompatActivity implements View.OnClickLis
                             String email = jsonObject.getString("email");
                             String address = jsonObject.getString("address");
                             String phone_number = jsonObject.getString("phone_number");
+                            String subcribe_date = jsonObject.getString("subcribe_date");
 
                             sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
                             // Simpan data ke SharedPreferences
@@ -116,6 +117,7 @@ public class LoginPelanggan extends AppCompatActivity implements View.OnClickLis
                             editor.putString("email", email);
                             editor.putString("address", address);
                             editor.putString("phone_number", phone_number);
+                            editor.putString("subcribe_date", subcribe_date);
                             editor.putBoolean("isLoggedIn", true); // Setelah login berhasil, simpan status login
                             editor.apply();
 
