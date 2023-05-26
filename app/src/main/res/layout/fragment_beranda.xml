@@ -264,8 +264,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="100dp">
+                    android:layout_marginTop="15dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -279,6 +278,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/kontak"
+                    android:layout_marginTop="15dp"
                     tools:listitem="@layout/list_contact">
 
                 </androidx.recyclerview.widget.RecyclerView>
