@@ -4,4 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="alamat_fans">Perum Griya Mangli Indah blok DF 1A, Kec.
 Kaliwates, Kab. Jember, Jawa Timur 68131</string>
+    <string name="keterangan">Silahkan screenshot QR Code ini, dan lakukan pembayaran lewat E-Wallet maupun E-Banking sesuai nominal harga yang tertera di bawah</string>
+    <string name="bukti">Setelah melakukan pembayaran, jangan lupa untuk screenshot bukti transfer dan kirim gambar lewat tombol dibawah ini</string>
 </resources>
