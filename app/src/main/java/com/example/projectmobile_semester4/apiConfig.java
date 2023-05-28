@@ -1,7 +1,7 @@
 package com.example.projectmobile_semester4;
 
 public class apiConfig {
-    public static final String URL = "https://e14e-2001-448a-5122-4dbb-8993-9c33-4a34-540c.ngrok-free.app";
+    public static final String URL = "https://7eee-125-166-117-65.ngrok-free.app";
     public static final String BASE_URL = URL+"/api/";
     public static final String LOGIN_ENDPOINT = BASE_URL + "login";
     public static final String CUSTOMERS_ENDPOINT = BASE_URL + "customers-with-product";

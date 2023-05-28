@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dialogbg"
-    android:clipToOutline="true">
+    android:clipToOutline="true"
+    android:outlineProvider="background">
 
 
     <ImageView
@@ -21,53 +22,77 @@
 
         <TextView
             android:id="@+id/createText"
-            android:layout_width="wrap_content"
+            android:layout_width="330dp"
             android:layout_height="wrap_content"
-            android:textAlignment="viewStart"
-            android:text="Create"
-            android:padding="8dp"
-            android:textColor="@color/fans"
+            android:textAlignment="center"
+            android:text="@string/keterangan"
+            android:textColor="@color/black"
             android:layout_marginStart="12dp"
             android:layout_marginTop="5dp"
-            android:textSize="25dp" />
-
-        <ImageView
-            android:id="@+id/cancelButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="250dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/ic_baseline_clear_24" />
-
+            android:textSize="15dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/cancelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/ic_baseline_clear_24" />
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layoutVideo"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:padding="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/rp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp. "
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/fans"
+                android:layout_toLeftOf="@id/harga"
+                />
+            <TextView
+                android:id="@+id/harga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Harga"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"/>
+        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/harga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Harga"
-            android:textSize="20dp"
-            android:textColor="@color/black"/>
 
         <ImageView
             android:id="@+id/barcode"
             android:layout_width="wrap_content"
-            android:layout_height="361dp"
+            android:layout_height="360dp"
             android:src="@drawable/barcode" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/bukti"/>
     </LinearLayout>
     <Button
         android:id="@+id/btnBayar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bayar"
+        android:text="Kirim Bukti Transfer"
+        android:textColor="@color/white"
+        android:textAppearance="?android:textAppearanceListItem"
         android:layout_margin="16dp" />
 
 </LinearLayout>

@@ -42,6 +42,7 @@ public class TransactionActivity extends AppCompatActivity {
     Bitmap bitmap;
     String encodedImage;
     private SharedPreferences sharedPreferences;
+    private Button btnKembali;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,13 @@ public class TransactionActivity extends AppCompatActivity {
         btnUploadImage = findViewById(R.id.btnUploadImage);
         imageView = findViewById(R.id.imView);
         sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
+        btnKembali = findViewById(R.id.btnKembaliTr);
+        btnKembali.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Mengakhiri activity dan kembali ke activity sebelumnya
+            }
+        });
 
         btnSelectImage.setOnClickListener(new View.OnClickListener() {
             @Override

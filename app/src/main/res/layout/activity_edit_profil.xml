@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".EditProfil">
     <androidx.cardview.widget.CardView
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="20dp"
@@ -44,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerInParent="true">
+        android:layout_below="@id/card">
 
 
         <LinearLayout
