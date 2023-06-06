@@ -3,8 +3,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -44,6 +47,17 @@ public class MainActivity2 extends AppCompatActivity implements SwipeRefreshLayo
     private EditText etFilter;
     private ArrayList<Pelanggan> filteredPelangganArrayList;
     SharedPreferences sharedPreferences;
+
+    private BroadcastReceiver dataUpdateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Menghandle siaran yang diterima
+            if (intent.getAction().equals("com.example.projectmobile_semester4.DATA_UPDATED")) {
+                // Lakukan pembaruan tampilan sesuai kebutuhan
+                fetchData();
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,8 +111,18 @@ public class MainActivity2 extends AppCompatActivity implements SwipeRefreshLayo
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
 
-    }
+        // Daftarkan BroadcastReceiver untuk mendengar siaran (broadcast)
+        IntentFilter intentFilter = new IntentFilter("com.example.projectmobile_semester4.DATA_UPDATED");
+        registerReceiver(dataUpdateReceiver, intentFilter);
 
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // Hapus pendaftaran BroadcastReceiver saat Activity dihancurkan
+        unregisterReceiver(dataUpdateReceiver);
+    }
     @Override
     public void onRefresh() {
         fetchData();
@@ -119,7 +143,7 @@ public class MainActivity2 extends AppCompatActivity implements SwipeRefreshLayo
         listView.setAdapter(adapter);
     }
 
-    private void fetchData() {
+    public void fetchData() {
         RequestQueue queue = Volley.newRequestQueue(this);
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, ENDPOINT_URL, null,

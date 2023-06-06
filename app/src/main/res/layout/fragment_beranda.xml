@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
-                    android:text="Ini diisi user yang login"
+                    android:text="-"
                     android:textColor="@color/fans"
                     android:textSize="20sp" />
 
@@ -113,7 +113,7 @@
                                 <TextView
                                     android:layout_width="250dp"
                                     android:layout_height="match_parent"
-                                    android:text="Buat jaga-jaga Isi dari deskripsi"
+                                    android:text="-"
                                     android:textColor="@color/grey"
                                     android:textSize="16sp"
                                     android:id="@+id/isiDeskripsi"/>
@@ -145,7 +145,7 @@
                                         android:id="@+id/statusPaket"
                                         android:layout_width="62dp"
                                         android:layout_height="wrap_content"
-                                        android:text="non aktif"
+                                        android:text="-"
                                         android:textAlignment="center"
                                         android:textColor="@color/fans"
                                         android:textStyle="bold" />
@@ -194,7 +194,7 @@
                                     android:layout_width="150dp"
                                     android:layout_height="match_parent"
                                     android:layout_marginTop="10dp"
-                                    android:text="3 hari lagi"
+                                    android:text="-"
                                     android:textSize="16sp"
                                     android:textColor="@color/grey"
                                     android:id="@+id/waktuTenggat"/>
@@ -202,7 +202,7 @@
                                     android:layout_width="150dp"
                                     android:layout_height="match_parent"
                                     android:layout_marginTop="5dp"
-                                    android:text="Sebelum tanggal 23 Desember"
+                                    android:text="-"
                                     android:textColor="@color/grey"
                                     android:id="@+id/batasTenggat"/>
                             </LinearLayout>
