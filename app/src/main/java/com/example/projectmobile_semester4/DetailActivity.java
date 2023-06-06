@@ -94,6 +94,7 @@ public class DetailActivity extends AppCompatActivity {
                         insertData();
                         btn_updateData();
                         expired(pelanggan.getId());
+
                     }
                 });
                 builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
@@ -187,9 +188,9 @@ public class DetailActivity extends AppCompatActivity {
 
                         Toast.makeText(DetailActivity.this, response, Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
+                        Intent intent = new Intent("com.example.projectmobile_semester4.DATA_UPDATED");
+                        sendBroadcast(intent);
                         finish();
-                        Intent intent = new Intent(DetailActivity.this, MainActivity2.class);
-                        startActivity(intent);
 
                     }
                 }, new Response.ErrorListener() {

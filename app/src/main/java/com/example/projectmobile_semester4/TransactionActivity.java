@@ -100,10 +100,13 @@ public class TransactionActivity extends AppCompatActivity {
                         , new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
-                        Toast.makeText(TransactionActivity.this, response, Toast.LENGTH_SHORT).show();
-                        // Menutup aktivitas saat pengunggahan berhasil
-                        finish();
+                        if (response.contains("Anda sudah mengupload gambar sebelumnya, admin sedang memprosesnya")) {
+                            Toast.makeText(TransactionActivity.this, response, Toast.LENGTH_LONG).show();
+                        } else if (response.contains("Gambar berhasil diupload")) {
+                            Toast.makeText(TransactionActivity.this, response, Toast.LENGTH_SHORT).show();
+                            // Menutup aktivitas saat pengunggahan berhasil
+                            finish();
+                        }
                     }
                 }, new Response.ErrorListener() {
                     @Override

@@ -53,6 +53,9 @@ public class Beranda extends Fragment implements JenisPaketAdapter.OnItemClickLi
     private RequestQueue requestQueue;
     private String url = apiConfig.BERANDA;
     private ArrayList<ContactModel> contactList;
+    String status,name,id,name_product,subcribe_date,speed;
+    Button BayarButton;
+    TextView deskripsiTextView;
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     public Beranda() {
@@ -68,55 +71,10 @@ public class Beranda extends Fragment implements JenisPaketAdapter.OnItemClickLi
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
 
         // Mengambil data dari SharedPreferences
-        String status = sharedPreferences.getString("status", "");
-        String name = sharedPreferences.getString("name", "");
-        String id = sharedPreferences.getString("id", "");
-        String name_product = sharedPreferences.getString("name_product", "");
-        String subcribe_date = sharedPreferences.getString("subcribe_date", "");
-
-        try {
-            // Konversi tanggal subscribe_date menjadi objek Date
-            Date subscribeDate = DATE_FORMAT.parse(subcribe_date);
-
-            // Buat objek Calendar dan atur tanggalnya sebagai subscribe_date
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(subscribeDate);
-
-            // Tambahkan 30 hari
-            calendar.add(Calendar.DAY_OF_MONTH, 30);
-
-            // Dapatkan tanggal setelah penambahan 30 hari
-            Date newDate = calendar.getTime();
-
-            // Format ulang tanggal menjadi string
-            String newDateStr = DATE_FORMAT.format(newDate);
-            TextView TenggattanggalTextView = view.findViewById(R.id.batasTenggat);
-            TenggattanggalTextView.setText("Sebelum tanggal "+newDateStr);
-            // Mendapatkan tanggal sekarang
-            Date tanggalSekarang = Calendar.getInstance().getTime();
-            // Mengurangi tanggal newDate dari subscribe_date
-            long differenceInMillis = newDate.getTime() - tanggalSekarang.getTime();
-
-            // Mengubah selisih waktu menjadi jumlah hari
-            int differenceInDays = (int) (differenceInMillis / (24 * 60 * 60 * 1000));
-
-            TextView WaktuTenggatTextView = view.findViewById(R.id.waktuTenggat);
-            WaktuTenggatTextView.setText(differenceInDays+ " hari lagi");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        id = sharedPreferences.getString("id", "");
+        requestQueue = Volley.newRequestQueue(getActivity());
 
 
-        // Mendapatkan referensi TextView yang ingin diubah teksnya
-        TextView nameTextView = view.findViewById(R.id.namaUser);
-        TextView statusTextView = view.findViewById(R.id.statusPaket);
-        TextView productTextView = view.findViewById(R.id.namaPaketBerlanggan);
-
-        // Mengatur teks pada TextView
-        nameTextView.setText(name);
-        statusTextView.setText(status);
-        productTextView.setText(name_product);
 
         recyclerView = view.findViewById(R.id.listPaket);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
@@ -124,6 +82,19 @@ public class Beranda extends Fragment implements JenisPaketAdapter.OnItemClickLi
         jenisPaketList = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(getActivity());
 
+
+
+
+        recyclerViewContact = view.findViewById(R.id.kontak);
+        recyclerViewContact.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        contactList = new ArrayList<>();
+        ContactAdapter contactAdapter = new ContactAdapter(contactList, getActivity());
+        recyclerViewContact.setAdapter(contactAdapter);
+        contactList.add(new ContactModel(R.drawable.admin, "Admin", "+6281332499299", "Hallo min saya ingin berlangganan"));
+        contactList.add(new ContactModel(R.drawable.teknisi, "Teknisi", "+6282231678985","Hallo pak saya ada kendala jaringan"));
+
+// Notifikasi adapter bahwa data telah berubah
+        contactAdapter.notifyDataSetChanged();
         // Mengambil data dari API menggunakan Volley
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -156,20 +127,100 @@ public class Beranda extends Fragment implements JenisPaketAdapter.OnItemClickLi
         });
 
         requestQueue.add(request);
-
-
-        recyclerViewContact = view.findViewById(R.id.kontak);
-        recyclerViewContact.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        contactList = new ArrayList<>();
-        ContactAdapter contactAdapter = new ContactAdapter(contactList, getActivity());
-        recyclerViewContact.setAdapter(contactAdapter);
-        contactList.add(new ContactModel(R.drawable.admin, "Admin", "+6281332499299", "Hallo min saya ingin berlangganan"));
-        contactList.add(new ContactModel(R.drawable.teknisi, "Teknisi", "+6282231678985","Hallo pak saya ada kendala jaringan"));
-
-// Notifikasi adapter bahwa data telah berubah
-        contactAdapter.notifyDataSetChanged();
+        fetchDataFromAPI();
 
         return view;
+    }
+    private void fetchDataFromAPI() {
+        String url = apiConfig.URL+"/api/costumer?costumer_id="+id;
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            JSONObject jsonObject = response.getJSONObject(0);
+
+                            status = jsonObject.getString("status");
+                            name = jsonObject.getString("name");
+                            name_product = jsonObject.getString("name_product");
+                            subcribe_date = jsonObject.getString("subcribe_date");
+                            speed = jsonObject.getString("speed");
+
+                            // Mengupdate teks pada TextView setelah mendapatkan data
+                            updateTextViews();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        requestQueue.add(request);
+    }
+    private void updateTextViews() {
+        View view = getView();
+        if (view != null) {
+            TextView nameTextView = view.findViewById(R.id.namaUser);
+            TextView statusTextView = view.findViewById(R.id.statusPaket);
+            TextView productTextView = view.findViewById(R.id.namaPaketBerlanggan);
+            deskripsiTextView = view.findViewById(R.id.isiDeskripsi);
+
+            // Mengatur teks pada TextView
+            nameTextView.setText(name);
+            statusTextView.setText(status);
+            productTextView.setText(name_product);
+        }
+        if (status.equals("active")) {
+            try {
+                // Konversi tanggal subscribe_date menjadi objek Date
+                Date subscribeDate = DATE_FORMAT.parse(subcribe_date);
+
+                // Buat objek Calendar dan atur tanggalnya sebagai subscribe_date
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(subscribeDate);
+
+                // Tambahkan 30 hari
+                calendar.add(Calendar.DAY_OF_MONTH, 30);
+
+                // Dapatkan tanggal setelah penambahan 30 hari
+                Date newDate = calendar.getTime();
+
+                // Format ulang tanggal menjadi string
+                String newDateStr = DATE_FORMAT.format(newDate);
+                TextView TenggattanggalTextView = getView().findViewById(R.id.batasTenggat);
+                TenggattanggalTextView.setText("Sebelum tanggal " + newDateStr);
+
+                // Mendapatkan tanggal sekarang
+                Date tanggalSekarang = Calendar.getInstance().getTime();
+                // Mengurangi tanggal newDate dari subscribe_date
+                long differenceInMillis = newDate.getTime() - tanggalSekarang.getTime();
+
+                // Mengubah selisih waktu menjadi jumlah hari
+                int differenceInDays = (int) (differenceInMillis / (24 * 60 * 60 * 1000));
+
+                TextView WaktuTenggatTextView = getView().findViewById(R.id.waktuTenggat);
+                WaktuTenggatTextView.setText(differenceInDays + " hari lagi");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (getView() != null) {
+                deskripsiTextView.setText("Internet sangat kencang dengan kecepatan " + speed +" Mbps");
+            }
+
+        }else if(status.equalsIgnoreCase("non active")){
+            if (getView() != null) {
+                deskripsiTextView.setText("Upload bukti transaksi untuk melakukan aktivasi paket internet");
+            }
+        }
+
+
+
     }
 
     @Override
@@ -196,7 +247,12 @@ public class Beranda extends Fragment implements JenisPaketAdapter.OnItemClickLi
                 bottomSheetDialog.dismiss();
             }
         });
-        Button BayarButton = bottomSheetView.findViewById(R.id.btnBayar);
+        BayarButton = bottomSheetView.findViewById(R.id.btnBayar);
+        if (status.equals("active")) {
+            BayarButton.setVisibility(View.GONE);
+        } else {
+            BayarButton.setVisibility(View.VISIBLE);
+        }
         BayarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
