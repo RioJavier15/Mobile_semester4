@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -211,11 +213,23 @@ public class Beranda extends Fragment implements JenisPaketAdapter.OnItemClickLi
             }
             if (getView() != null) {
                 deskripsiTextView.setText("Internet sangat kencang dengan kecepatan " + speed +" Mbps");
+                CardView cardView = view.findViewById(R.id.cardStatus);
+                cardView.setCardBackgroundColor(getResources().getColor(R.color.green));
             }
 
         }else if(status.equalsIgnoreCase("non active")){
             if (getView() != null) {
                 deskripsiTextView.setText("Upload bukti transaksi untuk melakukan aktivasi paket internet");
+                CardView cardView = getView().findViewById(R.id.cardStatus);
+                cardView.setCardBackgroundColor(ContextCompat.getColor(getActivity(), R.color.red));
+
+            }
+        } else {
+            if (getView() != null) {
+                deskripsiTextView.setText("Mohon tunggu sedang diproses");
+                CardView cardView = getView().findViewById(R.id.cardStatus);
+                cardView.setCardBackgroundColor(ContextCompat.getColor(getActivity(), R.color.grey));
+
             }
         }
 
@@ -258,6 +272,8 @@ public class Beranda extends Fragment implements JenisPaketAdapter.OnItemClickLi
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), TransactionActivity.class);
                 startActivity(intent);
+//                getActivity().finish();
+                bottomSheetDialog.dismiss();
             }
         });
     }

@@ -4,6 +4,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -95,40 +97,53 @@ public class TransactionActivity extends AppCompatActivity {
         btnUploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                StringRequest request = new StringRequest(Request.Method.POST, apiConfig.UPLOADIMAGE
-                        , new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if (response.contains("Anda sudah mengupload gambar sebelumnya, admin sedang memprosesnya")) {
-                            Toast.makeText(TransactionActivity.this, response, Toast.LENGTH_LONG).show();
-                        } else if (response.contains("Gambar berhasil diupload")) {
-                            Toast.makeText(TransactionActivity.this, response, Toast.LENGTH_SHORT).show();
-                            // Menutup aktivitas saat pengunggahan berhasil
-                            finish();
+                if (bitmap == null) {
+                    Toast.makeText(TransactionActivity.this, "Pilih gambar terlebih dahulu", Toast.LENGTH_SHORT).show();
+                } else {
+                    StringRequest request = new StringRequest(Request.Method.POST, apiConfig.UPLOADIMAGE,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    if (response.contains("Anda sudah mengupload gambar sebelumnya, admin sedang memprosesnya")) {
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(TransactionActivity.this);
+                                        builder.setTitle("!");
+                                        builder.setMessage(response);
+                                        builder.setPositiveButton("OK", null);
+                                        AlertDialog dialog = builder.create();
+                                        dialog.show();
+                                    } else if (response.contains("Gambar berhasil diupload")) {
+                                        Toast.makeText(TransactionActivity.this, response, Toast.LENGTH_SHORT).show();
+                                        updateStatus();
+                                        // Menutup aktivitas saat pengunggahan berhasil
+                                        Intent intent = new Intent(TransactionActivity.this, BottomNav.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(TransactionActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(TransactionActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }){
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String, String> params = new HashMap<>();
-                        String customerId = sharedPreferences.getString("id", "");
-                        params.put("id", customerId);
-                        params.put("image", encodedImage);
-                        return params;
-                    }
-                };
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String, String> params = new HashMap<>();
+                            String customerId = sharedPreferences.getString("id", "");
+                            params.put("id", customerId);
+                            params.put("image", encodedImage);
+                            return params;
+                        }
+                    };
 
-                RequestQueue requestQueue = Volley.newRequestQueue(TransactionActivity.this);
-                requestQueue.add(request);
+                    RequestQueue requestQueue = Volley.newRequestQueue(TransactionActivity.this);
+                    requestQueue.add(request);
 
+
+                }
             }
         });
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -163,6 +178,43 @@ public class TransactionActivity extends AppCompatActivity {
         byte[] imageBytes = byteArrayOutputStream.toByteArray();
         encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
 
+
+    }
+    public void updateStatus() {
+
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Updating....");
+        progressDialog.show();
+
+        StringRequest request = new StringRequest(Request.Method.POST, apiConfig.BASE_URL + "upstatus",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.dismiss();
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(TransactionActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String> params = new HashMap<String,String>();
+                String customerId = sharedPreferences.getString("id", "");
+                params.put("id",customerId);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(TransactionActivity.this);
+        requestQueue.add(request);
 
     }
 }
