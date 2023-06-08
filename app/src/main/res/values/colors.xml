@@ -12,4 +12,6 @@
     <color name="grey">#DADADA</color>
     <color name="blue">#000099</color>
     <color name="darkRed">#8b0000</color>
+    <color name="green">#7CFC00</color>
+    <color name="red">#FF3131</color>
 </resources>

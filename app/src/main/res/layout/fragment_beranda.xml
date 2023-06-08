@@ -128,7 +128,7 @@
                                 android:layout_alignParentEnd="true"
                                 android:layout_alignParentBottom="true"
                                 android:background="@drawable/custom_edittext"
-                                android:backgroundTint="@color/grey"
+
                                 android:clickable="true"
                                 app:cardCornerRadius="30dp"
                                 app:cardElevation="5dp">
@@ -147,7 +147,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="-"
                                         android:textAlignment="center"
-                                        android:textColor="@color/fans"
+                                        android:textColor="@color/black"
                                         android:textStyle="bold" />
                                 </LinearLayout>
                             </androidx.cardview.widget.CardView>
